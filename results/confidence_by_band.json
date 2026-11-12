@@ -1,0 +1,51 @@
+{
+  "tolerance_years": 3,
+  "overall_rate_pct": 35.3,
+  "methodology": "For predictions with predicted age in a given 10-year band, this is the empirical percentage of TEST-SET predictions in that band whose age was within +/-3 years of the true age. It is a held-out reliability rate, not a per-image calibrated probability. Bands with fewer than 20 test samples fall back to the overall rate.",
+  "bands": {
+    "0-10": {
+      "confidence_pct": 85.9,
+      "n": 419
+    },
+    "10-20": {
+      "confidence_pct": 41.8,
+      "n": 749
+    },
+    "20-30": {
+      "confidence_pct": 38.7,
+      "n": 8776
+    },
+    "30-40": {
+      "confidence_pct": 33.7,
+      "n": 9382
+    },
+    "40-50": {
+      "confidence_pct": 32.3,
+      "n": 5083
+    },
+    "50-60": {
+      "confidence_pct": 29.0,
+      "n": 2488
+    },
+    "60-70": {
+      "confidence_pct": 30.1,
+      "n": 1171
+    },
+    "70-80": {
+      "confidence_pct": 25.7,
+      "n": 417
+    },
+    "80-90": {
+      "confidence_pct": 35.3,
+      "n": 68
+    },
+    "90-100": {
+      "confidence_pct": 35.3,
+      "n": 10
+    },
+    "100-110": {
+      "confidence_pct": 35.3,
+      "n": 2
+    }
+  }
+}

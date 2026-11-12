@@ -1,0 +1,13 @@
+{
+  "raw_images_total": 273640,
+  "corrupt_images": 0,
+  "duplicate_same_label_collapsed": 34276,
+  "conflicting_label_groups_removed": 18429,
+  "conflicting_label_images_removed": 48908,
+  "clean_images_total": 190456,
+  "train_count": 133326,
+  "val_count": 28565,
+  "test_count": 28565,
+  "age_range": [1, 100],
+  "source": "ml/build_dataset.py dataset audit run (recorded verbatim from its actual console output)"
+}

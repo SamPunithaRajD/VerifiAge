@@ -1,0 +1,11 @@
+{
+  "a": 0.946701784805999,
+  "b": 2.6029188740345686,
+  "fitted_on": "validation_set",
+  "validated_on": "test_set",
+  "val_mae_raw": 6.008678698810996,
+  "val_mae_calibrated": 6.018392603530496,
+  "test_mae_raw": 5.9648022185541745,
+  "test_mae_calibrated": 5.98350203003567,
+  "apply_calibration": false
+}
