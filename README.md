@@ -1,254 +1,298 @@
-# VerifiAge — Age Prediction from Biometric Data
+ 
+<div align="center">
 
-Estimates a person's age from a face photo. The system is built around one principle:
-**it should never guess an age unless a reliable, single human face passed validation.**
+# VerifiAge
 
-Official model: **ResNet18** (ImageNet pretrained) + FastAPI backend + Streamlit UI.
+### AI-Powered Face-Based Age Estimation
 
-## Pipeline
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1100&color=22D3EE&center=true&vCenter=true&width=700&lines=Detect.+Analyze.+Estimate.;Computer+Vision+%7C+Deep+Learning+%7C+Explainable+AI;Real-Time+Face-Based+Age+Prediction" alt="Animated VerifiAge introduction" />
 
+<br/>
+
+<img src="./assets/verifiage-face-scan.svg" width="650" alt="VerifiAge animated face scanning illustration"/>
+
+<br/>
+
+[![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-Deep%20Learning-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)](https://opencv.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-Interface-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
+
+<br/>
+
+**An intelligent computer vision system that detects human faces and estimates age using deep learning, with real-time inference and visual explanations.**
+
+</div>
+
+---
+
+## Overview
+
+**VerifiAge** is an AI-powered face-based age estimation system that combines computer vision and deep learning to predict a person's approximate age from facial images.
+
+The system uses OpenCV's YuNet face detector for face validation and preprocessing, followed by a fine-tuned ResNet18 regression model for age prediction.
+
+Designed with both image-upload and webcam-based inference, VerifiAge provides an integrated experience through a FastAPI backend and Streamlit interface.
+
+The objective is to build a practical, modular and explainable age-estimation pipeline rather than simply producing a numerical prediction.
+
+## Key Features
+
+| Feature | Description |
+|---|---|
+| Face Detection | Detects faces using OpenCV YuNet |
+| Face Validation | Checks face count, detection confidence and image quality |
+| Age Estimation | Predicts approximate age using a ResNet18 regression model |
+| Image Inference | Supports uploaded facial images |
+| Live Inference | Supports webcam-based age estimation |
+| Prediction Smoothing | Uses recent predictions to stabilize live estimates |
+| Explainable AI | Grad-CAM visualizations to interpret model attention |
+| REST API | FastAPI-based prediction backend |
+| Interactive Interface | Streamlit application for user interaction |
+
+## How VerifiAge Works
+
+<div align="center">
+
+### The Age Estimation Pipeline
+
+</div>
+
+```mermaid
+flowchart TD
+    A["Input Image / Webcam"] --> B["Face Detection - YuNet"]
+    B --> C["Face Validation"]
+    C --> D["Image Quality Checks"]
+    D --> E["Face Cropping"]
+    E --> F["Preprocessing - 128 × 128"]
+    F --> G["ResNet18 Regression Model"]
+    G --> H["Predicted Age"]
+    H --> I["Grad-CAM Explanation"]
+    I --> J["FastAPI Response"]
+    J --> K["Streamlit Visualization"]
+
+    style A fill:#12304A,stroke:#22D3EE,color:#FFFFFF
+    style G fill:#12304A,stroke:#22D3EE,color:#FFFFFF
+    style H fill:#12304A,stroke:#22D3EE,color:#FFFFFF
+    style K fill:#12304A,stroke:#22D3EE,color:#FFFFFF
 ```
-IMAGE -> IMAGE VALIDATION -> FACE DETECTION (YuNet) -> FACE VALIDATION -> QUALITY GATE
-       -> SINGLE FACE CONFIRMATION -> CALIBRATED CROP -> RESNET18 -> AGE RESULT
+
+### 1. Face Detection and Validation
+
+- OpenCV YuNet is used for face detection.
+- Validates the number of detected faces.
+- Applies detection-confidence and minimum-face-size checks.
+- Performs image quality checks, including brightness and blur validation.
+- Extracts the detected facial region for inference.
+
+### 2. Image Preprocessing
+
+The detected face is processed before entering the deep learning model.
+
+- Face cropping and alignment preparation.
+- Resizing to 128 × 128.
+- Image normalization using ImageNet statistics.
+- Training-time augmentations to improve model generalization.
+
+### 3. Deep Learning-Based Age Prediction
+
+The core prediction engine uses **ResNet18**, initialized with ImageNet-pretrained weights and fine-tuned for age regression.
+
+Instead of classifying an image into an age category, the model predicts a continuous numerical age value.
+
+### 4. Explainable AI
+
+Grad-CAM is integrated to visualize the regions of the facial image that contribute to the model's prediction.
+
+This provides an additional interpretability layer to help understand model behavior.
+
+### 5. Live Webcam Estimation
+
+The webcam pipeline periodically performs face detection and inference. Recent predictions are smoothed over a rolling window of five predictions to reduce fluctuations in the displayed estimate.
+
+---
+
+## Model Performance
+
+The final evaluated model achieved the following results:
+
+<div align="center">
+
+| Evaluation Metric | Result |
+|:---:|:---:|
+| **Mean Absolute Error (MAE)** | **5.9648 years** |
+| **Root Mean Squared Error (RMSE)** | **8.1248 years** |
+| **R² Score** | **0.6940** |
+| **Mean Signed Error** | **-0.6403 years** |
+
+</div>
+
+### Understanding the Results
+
+- **MAE:** The average absolute difference between predicted and actual ages was approximately 5.96 years.
+- **RMSE:** Penalizes larger prediction errors more heavily.
+- **R²:** Indicates how much variation in the target age values is explained by the model.
+- **Mean Signed Error:** Indicates a small average underestimation in the evaluated predictions.
+
+These are experimental evaluation results and should not be interpreted as a guarantee of accuracy for every individual.
+
+---
+
+## Technology Stack
+
+<div align="center">
+
+| Category | Technologies |
+|---|---|
+| Programming Language | Python |
+| Deep Learning Framework | PyTorch |
+| Model Architecture | ResNet18 |
+| Face Detection | OpenCV YuNet |
+| Image Processing | OpenCV, PIL |
+| Explainable AI | Grad-CAM |
+| Backend | FastAPI |
+| Frontend | Streamlit |
+| Model Evaluation | MAE, RMSE, R² |
+| Development | Jupyter Notebook, Python |
+
+</div>
+
+---
+
+## Installation and Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/<your-username>/<your-repository>.git
+cd <your-repository>
 ```
 
-The model never sees an image that fails the gate. Rejections are explicit, typed statuses
-(`no_face`, `multiple_faces`, `low_quality`), never a guessed age.
+### 2. Create a Virtual Environment
 
-**Framing calibration (verified, went through two wrong designs first — see Known
-Limitations for the full incident writeup):** the crop fed to the model is not the raw
-detected face box, and not the whole unprocessed image either. Measured directly across 148
-training images: the detected face covers ~46% of frame width / ~61% of frame height on
-average (std ~9%). `face_gate.crop_face` reproduces that same framing around the detected
-face for *any* input photo, using margins calibrated from that measurement
-(`MARGIN_RATIO_W=0.582`, `MARGIN_RATIO_H=0.314`). This makes the model's input consistent
-with training regardless of how the source photo itself is composed — a tight face-only crop
-and a face-in-a-large-photo both get normalized to roughly the same framing.
-
-## Project structure
-
-```
-verifiage/
-├── data/
-│   ├── raw/        # extracted Kaggle dataset (gitignored)
-│   ├── clean/       # clean_metadata.csv (deduped, leakage-checked)
-│   └── splits/      # train.csv / val.csv / test.csv
-├── models/
-│   └── face_detection_yunet.onnx   # OpenCV YuNet face detector weights
-├── ml/
-│   ├── build_dataset.py   # scan raw -> dedup -> stratified split (cached)
-│   ├── preprocessing.py   # SHARED transform used by training + inference
-│   ├── face_gate.py       # detect -> validate -> quality gate -> single-face policy -> crop
-│   ├── dataset.py
-│   ├── model.py            # ResNet18 regression head
-│   ├── metrics.py
-│   ├── baseline.py         # mean-age baseline
-│   ├── train.py            # differential LR, early stopping, LR scheduler, weighted sampler
-│   ├── evaluate.py         # final TEST set metrics -> results/metrics.json
-│   ├── calibrate.py        # bias correction fit on VAL, verified on TEST
-│   ├── gradcam.py          # Grad-CAM explanation overlay (regression variant)
-│   ├── predict.py          # single-image CLI inference (runs the full gate)
-│   └── test_detector_sample.py   # YuNet sample test (faces vs objects/jewelry/patterns)
-├── backend/
-│   ├── main.py        # FastAPI: /health /predict /metrics /confidence /calibration
-│   ├── inference.py    # reuses ml/predict.py
-│   └── schemas.py
-├── frontend/
-│   ├── app.py                 # Streamlit entry point (st.navigation, persistent sidebar)
-│   ├── pages_src/
-│   │   ├── dashboard.py         # hero + KPI cards + system status + how-it-works
-│   │   ├── face_analysis.py     # continuous live camera analysis
-│   │   ├── upload_analysis.py   # upload-a-photo analysis
-│   │   ├── architecture.py      # visual pipeline diagram
-│   │   ├── kpis.py               # measured metrics, MAE-by-band chart, data quality
-│   │   ├── settings.py           # non-technical info only
-│   │   └── developer.py          # backend URL, health, thresholds (dev-only)
-│   └── src/
-│       ├── api_client.py       # calls the FastAPI backend
-│       ├── theme.py            # shared black + neon-green dark UI CSS
-│       ├── live_camera.py      # continuous getUserMedia camera + periodic inference
-│       └── analysis_ui.py      # shared result/error rendering helpers
-├── checkpoints/best_resnet18.pth
-├── results/           # metrics.json, calibration.json, confidence_by_band.json
-└── tests/
+```bash
+python -m venv venv
 ```
 
-## Setup
+Activate it:
+
+**Windows**
+
+```bash
+venv\Scripts\activate
+```
+
+**Linux / macOS**
+
+```bash
+source venv/bin/activate
+```
+
+### 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Dataset: [mariafrenti/age-prediction](https://www.kaggle.com/datasets/mariafrenti/age-prediction) on Kaggle (downloaded via Kaggle API into `data/raw/`).
+### 4. Configure Model Weights
 
-## Pipeline commands
+Ensure the trained ResNet18 checkpoint is available at the model path configured in the project.
 
-```bash
-python ml/build_dataset.py             # one-time, cached: clean + split the dataset
-python ml/baseline.py                  # mean-age baseline MAE
-python ml/test_detector_sample.py      # sanity-check YuNet on faces vs non-faces first
-python ml/train.py --smoke             # sanity check: tiny subset, 1 epoch
-python ml/train.py --epochs 2 --frac 0.2   # pilot run
-python ml/train.py --epochs 30         # full run, early stopping -> checkpoints/best_resnet18.pth
-python ml/train.py --epochs 30 --weighted-sampler  # A/B: age-balanced sampling
-python ml/evaluate.py                  # final TEST metrics -> results/metrics.json
-python ml/calibrate.py                 # bias correction fit on VAL, verified on TEST
-python ml/predict.py path/to/image.jpg
-python ml/gradcam.py path/to/image.jpg
+### 5. Start the Backend
+
+VerifiAge uses FastAPI and exposes an age-analysis endpoint:
+
+```text
+POST /analyze
 ```
 
-## Backend
+Start the backend using the actual FastAPI application module in your repository. For example, if the application is defined in `main.py`:
 
 ```bash
-cd backend
-python -m uvicorn main:app --host 127.0.0.1 --port 8010
+uvicorn main:app --reload
 ```
 
-- `GET /health` — `{"status": "ok", "model_loaded": true}`
-- `POST /predict` — multipart image upload. Response `status` is one of:
-  - `success` — `{status, predicted_age, age_range, face_status, quality_status, model, confidence_pct, gradcam_base64}`
-  - `no_face` / `multiple_faces` / `low_quality` — `{status, predicted_age: null, message}`
-- `POST /predict?mock=true` — fixed sample response, no model needed (for frontend dev)
-- `GET /metrics` — saved test-set metrics (MAE/RMSE/R2/CS(2,3,5), per-age-band bias)
-- `GET /calibration` — bias-correction parameters and whether they're applied
-- `GET /confidence` — empirical reliability-by-age-band table + methodology
+### 6. Launch the Streamlit Interface
 
-## Frontend
+Run the Streamlit entry-point file in your repository:
 
 ```bash
-cd frontend
-python -m streamlit run app.py
+streamlit run <your-streamlit-entrypoint>.py
 ```
 
-Opens at `http://localhost:8501` with a persistent left sidebar (Dashboard / Face Analysis /
-Upload Analysis / Architecture / KPIs / Settings / Developer Mode). Talks to the backend over
-HTTP — no internal URLs, thresholds, or debug controls are shown outside Developer Mode. Face
-detection/validation/quality gating happens entirely on the backend (single source of truth);
-the frontend just renders whatever status the backend returns.
+Open the local Streamlit URL displayed in your terminal.
 
-**Live camera:** `frontend/src/live_camera.py` embeds a custom HTML/JS component
-(`getUserMedia` + periodic `fetch`) for true continuous camera tracking with a live neon
-bounding box, not a 3-photo capture workflow. Inference runs periodically
-(`INFER_INTERVAL_MS`) and the displayed age is smoothed over a rolling window
-(`SMOOTHING_WINDOW`) directly in JS, without triggering a Streamlit rerun per frame.
+---
 
-## Face detection
+## Application Modules
 
-**Detector: OpenCV YuNet** (`cv2.FaceDetectorYN`), replacing an earlier Haar Cascade approach
-that produced false positives on non-face objects. Tested on 41 representative images before
-being wired into the pipeline (`ml/test_detector_sample.py`): 20/20 real faces detected,
-21/21 non-faces correctly rejected (0 false positives), including synthetic jewelry/ring/
-locket/checkerboard/noise images specifically constructed to trip up a weaker detector.
-
-Multi-signal validation gate (`ml/face_gate.py`): detector confidence, minimum face size,
-aspect-ratio plausibility, in-bounds box, then a quality gate (blur via Laplacian variance,
-brightness) before the model ever runs. Zero, one, or multiple valid faces are handled as
-distinct explicit outcomes — never "pick the first/largest face."
-
-## Results
-
-ResNet18, full 133,326-image training set, 5 epochs (never triggered early stopping — still
-improving each epoch, so more epochs would likely help further), differential LR
-(backbone 1e-5, head 1e-4), CPU-only (measured, not assumed).
-
-| | Value |
+| Module | Responsibility |
 |---|---|
-| Baseline (predict mean age) MAE | 11.41 years |
-| Validation MAE (best epoch) | 6.01 years |
-| **Test MAE** (held-out, 28,565 images) | **5.96 years** |
-| Test RMSE | 8.12 years |
-| Test R² | 0.694 |
-| CS(2) / CS(3) / CS(5) | 24.2% / 35.3% / 54.0% |
-| Mean signed error (bias) | -0.64 years (slight under-prediction) |
+| Face Detection | Identifies and validates facial regions |
+| Preprocessing | Prepares input images for model inference |
+| Age Prediction | Performs ResNet18-based regression |
+| Explainability | Generates Grad-CAM visualizations |
+| API Layer | Handles prediction requests |
+| User Interface | Provides image upload and webcam interaction |
 
-**Calibration was tested and correctly NOT applied**: a linear correction fit on the
-validation set (`calibrated_age = 0.947 * pred + 2.60`) was verified against the held-out
-test set and made MAE *slightly worse* (5.965 -> 5.984), even though it reduced the aggregate
-bias closer to zero. Per the project rule ("only keep calibration if it genuinely improves
-test MAE"), it was left off — the deployed model uses raw predictions. This is a sign the
-model itself is now well-calibrated on average; earlier, less-trained versions did benefit
-from calibration.
+---
 
-**MAE and bias by age band** (still shows the classic regression-to-the-mean pattern, reduced
-but not eliminated by more data/training):
+## Screenshots and Demonstration
 
-| Age band | n | MAE | Bias |
-|---|---|---|---|
-| 1-12 | 662 | 5.03 | +4.40 |
-| 13-19 | 1343 | 7.54 | +7.09 |
-| 20-29 | 7441 | 4.69 | +3.08 |
-| 30-39 | 8483 | 4.91 | -0.49 |
-| 40-49 | 5471 | 6.28 | -2.96 |
-| 50-59 | 2805 | 7.78 | -4.66 |
-| 60-69 | 1454 | 8.75 | -6.51 |
-| 70-79 | 618 | 11.38 | -10.41 |
-| 80-100 | 288 | 15.63 | -14.94 |
+<div align="center">
 
-The model still hedges toward the dense middle of the training distribution (20-45), and the
-under/over-represented age bands (children, elderly) have far fewer training images — this is
-a data-imbalance effect, not something recalibration alone can fix (an age-balanced
-`WeightedRandomSampler` is implemented and available via `--weighted-sampler` as a controlled
-A/B experiment, but wasn't run for this final model given time constraints).
+### Application Interface
 
-**Note on the table above:** it's measured via the training-matched raw-image path
-(`evaluate.py`, same as training - no face detection involved). The table below is the same
-age bands measured through the *actual deployed pipeline* (`ml/evaluate_live_pipeline.py`:
-face detection + calibrated crop + model, sampled 150/band from the held-out test set) - this
-is what real users experience, and is the honest number to trust for live behavior:
+</div>
 
-| Age band | n sampled | MAE | Bias |
-|---|---|---|---|
-| 1-12 | 150 | 5.09 | +4.70 |
-| 13-19 | 150 | 6.56 | +6.23 |
-| 20-29 | 150 | 4.29 | +1.92 |
-| 30-39 | 150 | 5.49 | -0.93 |
-| 40-49 | 150 | 6.57 | -3.93 |
-| 50-59 | 150 | 8.01 | -5.73 |
-| 60-69 | 150 | 9.34 | -7.36 |
-| 70-79 | 150 | 11.74 | -10.78 |
-| 80-100 | 150 | 16.68 | -16.32 |
+Add your actual project screenshots in the `assets` directory and display them here.
 
-Population-weighted overall MAE through the live pipeline: **6.12 years** (vs. 5.97 offline —
-a small, acceptable cost for framing robustness on arbitrary real-world photos; see Known
-Limitations for the full incident writeup).
+```markdown
+![VerifiAge Dashboard](./assets/dashboard.png)
 
-## Known limitations
+![Face Detection](./assets/face-detection.png)
 
-- Face detection favors precision by default (fewer false positives, occasionally misses a
-  partially-occluded or extreme-angle face) — this is inherent to any single-pass detector at
-  fixed default thresholds.
-- Training compute is CPU-only on this machine (measured directly, not assumed) — this bounds
-  how many epochs/how much data a "final" run can realistically cover under a hackathon
-  deadline. See training run notes for the exact scope actually used.
-- Gender is not predicted, and no identity/face-recognition of any kind is implemented — both
-  intentionally out of scope.
-- "Confidence" is a measured empirical reliability rate, not a calibrated per-image probability
-  (see `/confidence` endpoint's `methodology` field for the exact definition).
-- Age-balanced sampling (`--weighted-sampler`) is implemented but not yet run as a controlled
-  comparison against the current model — a real next step for narrowing the age-band bias.
-- **Even with the calibrated crop, a face that's a very small fraction of a much larger photo
-  still degrades accuracy** (upsampling a small face region to the model's input size loses
-  real detail) — verified: one such case improved from ~20 years predicted error to ~15-18,
-  a real improvement but not a full fix. Users should expect somewhat lower accuracy on wide
-  shots where the subject is small in frame; this is disclosed, not hidden.
-- **Two real bugs found and fixed via a live production failure report** ("a clearly visible
-  ~1-year-old was predicted as ~31"). Root-caused with a four-path reproduction (offline
-  eval, `predict.py`, FastAPI, frontend) plus direct model-input inspection:
-  1. An *intermediate* fix (feeding the model the whole unprocessed image) was correct for
-     this dataset's own already-tightly-framed test images, but wrong in general: a
-     realistic photo where the face is small in a larger frame was verified to reproduce
-     the exact failure (~20 years predicted for a 1-year-old), because the model was never
-     trained on that framing and defaults toward the dataset's overall mean age (~37) for
-     unfamiliar compositions. Fixed by the calibrated crop described above, which normalizes
-     *any* input photo's framing to match training - measured on 1,332 held-out samples
-     (150/age-band): population-weighted MAE 5.97 -> 6.12 (a small, acceptable cost) while
-     fixing the catastrophic small-face-in-frame case.
-  2. `face_gate`'s bounds check was rejecting an entire high-confidence face detection (e.g.
-     score 0.96) outright whenever the box overshot the frame edge by even 1-2px - normal
-     detector jitter for faces near the edge of a tight photo, not a bad detection. This was
-     silently producing false `no_face` rejections. Fixed by clamping the box to the frame
-     instead of discarding the detection.
-  Both fixes verified consistent across all four paths, verified not to reduce no-face/
-  object-rejection accuracy (jewelry/pattern/noise synthetic tests re-run, still 0 false
-  positives), and covered by a new regression test
-  (`test_small_face_in_large_frame_does_not_produce_wild_prediction`).
+![Age Prediction](./assets/age-prediction.png)
+
+![Grad-CAM Visualization](./assets/gradcam.png)
+```
+
+---
+
+## Future Improvements
+
+- Explore stronger vision backbones and vision foundation models.
+- Improve prediction accuracy across different age groups.
+- Expand demographic and image-quality robustness evaluation.
+- Optimize inference latency for real-time applications.
+- Improve model calibration and uncertainty estimation.
+- Extend explainability and model evaluation capabilities.
+
+---
+
+## Important Disclaimer
+
+VerifiAge is an experimental AI-based age-estimation project.
+
+Its output is an approximate prediction, not a verified identity or legally valid age confirmation. Predictions may vary due to lighting, facial appearance, image quality, dataset bias and other factors.
+
+It should not be used as the sole basis for identity verification, legal age verification, access control or other high-stakes decisions.
+
+Facial images are sensitive personal data. Use only images for which appropriate consent and authorization have been obtained.
+
+---
+
+## Project Information
+
+<div align="center">
+
+**VERIFIAGE — AI-POWERED AGE ESTIMATION**
+
+Built using Computer Vision, Deep Learning and Explainable AI.
+
+<br/>
+
+*Detect. Analyze. Estimate.*
+
+</div>
