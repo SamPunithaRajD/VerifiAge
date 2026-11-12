@@ -7,9 +7,6 @@
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1100&color=22D3EE&center=true&vCenter=true&width=700&lines=Detect.+Analyze.+Estimate.;Computer+Vision+%7C+Deep+Learning+%7C+Explainable+AI;Real-Time+Face-Based+Age+Prediction" alt="Animated VerifiAge introduction" />
 
-<br/>
-
-<img src="./assets/verifiage-face-scan.svg" width="650" alt="VerifiAge animated face scanning illustration"/>
 
 <br/>
 
