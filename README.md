@@ -6,10 +6,6 @@
 
 <br/>
 
-<img src="./assets/verifiage-face-scan.svg" width="85%" alt="VerifiAge animated facial scanning visualization" />
-
-<br/>
-
 **A deep learning-powered age estimation system combining face detection, neural networks, real-time inference and explainable AI.**
 
 <br/>
