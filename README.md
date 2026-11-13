@@ -1,178 +1,182 @@
- 
-<div align="center">
+ <div align="center">
 
-# VerifiAge
+<img src="https://capsule-render.vercel.app/api?type=waving&height=230&color=0:020617,45:0F3B55,100:06B6D4&text=VERIFIAGE&fontSize=68&fontColor=FFFFFF&fontAlignY=38&desc=AI-Powered%20Face-Based%20Age%20Estimation&descSize=19&descAlignY=60&animation=fadeIn" width="100%" />
 
-### AI-Powered Face-Based Age Estimation
-
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1100&color=22D3EE&center=true&vCenter=true&width=700&lines=Detect.+Analyze.+Estimate.;Computer+Vision+%7C+Deep+Learning+%7C+Explainable+AI;Real-Time+Face-Based+Age+Prediction" alt="Animated VerifiAge introduction" />
-
+<img src="https://readme-typing-svg.demolab.com?font=Orbitron&weight=600&size=19&duration=2500&pause=700&color=22D3EE&center=true&vCenter=true&width=750&lines=SEE+THE+FACE.+UNDERSTAND+THE+FEATURES.;DEEP+LEARNING+MEETS+COMPUTER+VISION.;DETECT.+ANALYZE.+ESTIMATE." alt="Animated VerifiAge tagline" />
 
 <br/>
 
-[![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-Deep%20Learning-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
-[![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)](https://opencv.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-Interface-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
+<img src="./assets/verifiage-face-scan.svg" width="85%" alt="VerifiAge animated facial scanning visualization" />
 
 <br/>
 
-**An intelligent computer vision system that detects human faces and estimates age using deep learning, with real-time inference and visual explanations.**
+**A deep learning-powered age estimation system combining face detection, neural networks, real-time inference and explainable AI.**
+
+<br/>
+
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)](https://opencv.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![Deep Learning](https://img.shields.io/badge/Deep_Learning-1E293B?style=for-the-badge&logo=brain&logoColor=22D3EE)](#)
 
 </div>
 
 ---
 
-## Overview
+## ◈ 01 — Project Vision
 
-**VerifiAge** is an AI-powered face-based age estimation system that combines computer vision and deep learning to predict a person's approximate age from facial images.
+**VerifiAge** is an AI-powered facial age estimation system designed to estimate a person's approximate age from facial images.
 
-The system uses OpenCV's YuNet face detector for face validation and preprocessing, followed by a fine-tuned ResNet18 regression model for age prediction.
+It combines computer vision-based face detection with a fine-tuned ResNet18 regression model to produce continuous age predictions.
 
-Designed with both image-upload and webcam-based inference, VerifiAge provides an integrated experience through a FastAPI backend and Streamlit interface.
+Beyond prediction, VerifiAge incorporates image-quality validation, webcam inference and Grad-CAM visualizations to provide a more interpretable and practical AI experience.
 
-The objective is to build a practical, modular and explainable age-estimation pipeline rather than simply producing a numerical prediction.
+> Not just face detection. Not just prediction. An integrated facial age analysis pipeline.
 
-## Key Features
-
-| Feature | Description |
-|---|---|
-| Face Detection | Detects faces using OpenCV YuNet |
-| Face Validation | Checks face count, detection confidence and image quality |
-| Age Estimation | Predicts approximate age using a ResNet18 regression model |
-| Image Inference | Supports uploaded facial images |
-| Live Inference | Supports webcam-based age estimation |
-| Prediction Smoothing | Uses recent predictions to stabilize live estimates |
-| Explainable AI | Grad-CAM visualizations to interpret model attention |
-| REST API | FastAPI-based prediction backend |
-| Interactive Interface | Streamlit application for user interaction |
-
-## How VerifiAge Works
+## ◈ 02 — The Intelligence Behind VerifiAge
 
 <div align="center">
 
-### The Age Estimation Pipeline
+| <img src="https://img.shields.io/badge/01-FACE%20DETECTION-22D3EE?style=for-the-badge" /> | <img src="https://img.shields.io/badge/02-FACE%20VALIDATION-38BDF8?style=for-the-badge" /> |
+|---|---|
+| OpenCV YuNet detects facial regions. | Face count, confidence and image quality checks. |
+
+| <img src="https://img.shields.io/badge/03-DEEP%20LEARNING-A78BFA?style=for-the-badge" /> | <img src="https://img.shields.io/badge/04-AGE%20ESTIMATION-22D3EE?style=for-the-badge" /> |
+|---|---|
+| Fine-tuned ResNet18 feature extraction. | Continuous age regression prediction. |
+
+| <img src="https://img.shields.io/badge/05-EXPLAINABLE%20AI-34D399?style=for-the-badge" /> | <img src="https://img.shields.io/badge/06-REAL%20TIME-F472B6?style=for-the-badge" /> |
+|---|---|
+| Grad-CAM visual explanations. | Webcam inference with prediction smoothing. |
+
+</div>
+
+## ◈ 03 — Model Performance
+
+<div align="center">
+
+<img src="https://img.shields.io/badge/MEAN%20ABSOLUTE%20ERROR-5.9648%20YEARS-06B6D4?style=for-the-badge" />
+<img src="https://img.shields.io/badge/RMSE-8.1248%20YEARS-0EA5E9?style=for-the-badge" />
+<img src="https://img.shields.io/badge/R%5E2%20SCORE-0.6940-8B5CF6?style=for-the-badge" />
+<img src="https://img.shields.io/badge/MEAN%20SIGNED%20ERROR--0.6403-10B981?style=for-the-badge" />
+
+<br/>
+
+| Metric | Evaluated Result |
+|:---:|:---:|
+| Mean Absolute Error | **5.9648 years** |
+| Root Mean Squared Error | **8.1248 years** |
+| R² Score | **0.6940** |
+| Mean Signed Error | **-0.6403 years** |
+
+</div>
+
+The model uses an ImageNet-pretrained ResNet18 backbone, fine-tuned for continuous age regression.
+
+*Results represent the reported experimental evaluation and do not guarantee individual prediction accuracy.*
+
+## ◈ 04 — System Architecture
+
+<div align="center">
+
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=16&pause=1000&color=22D3EE&center=true&vCenter=true&width=550&lines=FROM+RAW+IMAGE+TO+INTELLIGENT+PREDICTION" alt="Architecture animation" />
 
 </div>
 
 ```mermaid
 flowchart TD
-    A["Input Image / Webcam"] --> B["Face Detection - YuNet"]
+    A["IMAGE / WEBCAM INPUT"] --> B["OpenCV YuNet"]
     B --> C["Face Validation"]
-    C --> D["Image Quality Checks"]
-    D --> E["Face Cropping"]
-    E --> F["Preprocessing - 128 × 128"]
-    F --> G["ResNet18 Regression Model"]
-    G --> H["Predicted Age"]
-    H --> I["Grad-CAM Explanation"]
-    I --> J["FastAPI Response"]
-    J --> K["Streamlit Visualization"]
+    C --> D["Quality Assessment"]
+    D --> E["Face Crop & Preprocessing"]
+    E --> F["ResNet18 Regression"]
+    F --> G["Estimated Age"]
+    G --> H["Grad-CAM Explanation"]
+    H --> I["FastAPI Backend"]
+    I --> J["Streamlit Interface"]
 
-    style A fill:#12304A,stroke:#22D3EE,color:#FFFFFF
-    style G fill:#12304A,stroke:#22D3EE,color:#FFFFFF
-    style H fill:#12304A,stroke:#22D3EE,color:#FFFFFF
-    style K fill:#12304A,stroke:#22D3EE,color:#FFFFFF
+    style A fill:#0F172A,stroke:#22D3EE,color:#FFFFFF
+    style F fill:#172554,stroke:#38BDF8,color:#FFFFFF
+    style G fill:#164E63,stroke:#22D3EE,color:#FFFFFF
+    style J fill:#0F172A,stroke:#A78BFA,color:#FFFFFF
 ```
 
-### 1. Face Detection and Validation
-
-- OpenCV YuNet is used for face detection.
-- Validates the number of detected faces.
-- Applies detection-confidence and minimum-face-size checks.
-- Performs image quality checks, including brightness and blur validation.
-- Extracts the detected facial region for inference.
-
-### 2. Image Preprocessing
-
-The detected face is processed before entering the deep learning model.
-
-- Face cropping and alignment preparation.
-- Resizing to 128 × 128.
-- Image normalization using ImageNet statistics.
-- Training-time augmentations to improve model generalization.
-
-### 3. Deep Learning-Based Age Prediction
-
-The core prediction engine uses **ResNet18**, initialized with ImageNet-pretrained weights and fine-tuned for age regression.
-
-Instead of classifying an image into an age category, the model predicts a continuous numerical age value.
-
-### 4. Explainable AI
-
-Grad-CAM is integrated to visualize the regions of the facial image that contribute to the model's prediction.
-
-This provides an additional interpretability layer to help understand model behavior.
-
-### 5. Live Webcam Estimation
-
-The webcam pipeline periodically performs face detection and inference. Recent predictions are smoothed over a rolling window of five predictions to reduce fluctuations in the displayed estimate.
-
----
-
-## Model Performance
-
-The final evaluated model achieved the following results:
+## ◈ 05 — Technology Arsenal
 
 <div align="center">
 
-| Evaluation Metric | Result |
-|:---:|:---:|
-| **Mean Absolute Error (MAE)** | **5.9648 years** |
-| **Root Mean Squared Error (RMSE)** | **8.1248 years** |
-| **R² Score** | **0.6940** |
-| **Mean Signed Error** | **-0.6403 years** |
-
-</div>
-
-### Understanding the Results
-
-- **MAE:** The average absolute difference between predicted and actual ages was approximately 5.96 years.
-- **RMSE:** Penalizes larger prediction errors more heavily.
-- **R²:** Indicates how much variation in the target age values is explained by the model.
-- **Mean Signed Error:** Indicates a small average underestimation in the evaluated predictions.
-
-These are experimental evaluation results and should not be interpreted as a guarantee of accuracy for every individual.
-
----
-
-## Technology Stack
-
-<div align="center">
-
-| Category | Technologies |
+| Layer | Technology |
 |---|---|
-| Programming Language | Python |
-| Deep Learning Framework | PyTorch |
-| Model Architecture | ResNet18 |
+| Language | Python |
+| Deep Learning | PyTorch |
+| Neural Architecture | ResNet18 |
 | Face Detection | OpenCV YuNet |
 | Image Processing | OpenCV, PIL |
-| Explainable AI | Grad-CAM |
+| Explainability | Grad-CAM |
 | Backend | FastAPI |
 | Frontend | Streamlit |
-| Model Evaluation | MAE, RMSE, R² |
-| Development | Jupyter Notebook, Python |
+| Evaluation | MAE, RMSE, R² |
 
 </div>
 
----
+## ◈ 06 — Experience the Pipeline
 
-## Installation and Setup
+<div align="center">
 
-### 1. Clone the Repository
+**01 — DETECT**
+
+<img src="https://img.shields.io/badge/FACE-LOCATED-22D3EE?style=for-the-badge&logo=opencv&logoColor=white" />
+
+Identify and validate facial regions from an input image or webcam stream.
+
+<br/>
+
+**02 — ANALYZE**
+
+<img src="https://img.shields.io/badge/FEATURES-EXTRACTED-38BDF8?style=for-the-badge&logo=pytorch&logoColor=white" />
+
+Process the detected face through the trained neural network.
+
+<br/>
+
+**03 — ESTIMATE**
+
+<img src="https://img.shields.io/badge/AGE-PREDICTED-8B5CF6?style=for-the-badge" />
+
+Generate a continuous age estimate and visualization.
+
+</div>
+
+## ◈ 07 — Explainable AI
+
+VerifiAge integrates **Grad-CAM (Gradient-weighted Class Activation Mapping)** to visualize regions contributing to the prediction.
+
+This helps explore how the model responds to facial image features rather than presenting only a numerical output.
+
+<div align="center">
+
+<img src="./assets/gradcam.png" width="75%" alt="Grad-CAM visualization — add actual project output here" />
+
+<sub>Replace this placeholder with your actual Grad-CAM output.</sub>
+
+</div>
+
+## ◈ 08 — Run VerifiAge Locally
+
+### Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/<your-repository>.git
-cd <your-repository>
+git clone https://github.com/<USERNAME>/<REPOSITORY>.git
+cd <REPOSITORY>
 ```
 
-### 2. Create a Virtual Environment
+### Create an environment
 
 ```bash
 python -m venv venv
 ```
-
-Activate it:
 
 **Windows**
 
@@ -186,110 +190,71 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-### 3. Install Dependencies
+### Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Configure Model Weights
+### Start the API
 
-Ensure the trained ResNet18 checkpoint is available at the model path configured in the project.
-
-### 5. Start the Backend
-
-VerifiAge uses FastAPI and exposes an age-analysis endpoint:
-
-```text
-POST /analyze
-```
-
-Start the backend using the actual FastAPI application module in your repository. For example, if the application is defined in `main.py`:
+Use the module and application object defined in your FastAPI source:
 
 ```bash
-uvicorn main:app --reload
+uvicorn <module>:<app_object> --reload
 ```
 
-### 6. Launch the Streamlit Interface
-
-Run the Streamlit entry-point file in your repository:
+### Start the interface
 
 ```bash
-streamlit run <your-streamlit-entrypoint>.py
+streamlit run <your_streamlit_entrypoint>.py
 ```
 
-Open the local Streamlit URL displayed in your terminal.
+Ensure the trained model checkpoint and YuNet model files are available at the paths configured in the project.
 
----
-
-## Application Modules
-
-| Module | Responsibility |
-|---|---|
-| Face Detection | Identifies and validates facial regions |
-| Preprocessing | Prepares input images for model inference |
-| Age Prediction | Performs ResNet18-based regression |
-| Explainability | Generates Grad-CAM visualizations |
-| API Layer | Handles prediction requests |
-| User Interface | Provides image upload and webcam interaction |
-
----
-
-## Screenshots and Demonstration
+## ◈ 09 — Project Gallery
 
 <div align="center">
 
-### Application Interface
+| Dashboard | Face Detection |
+|---|---|
+| ![Dashboard](./assets/dashboard.png) | ![Face Detection](./assets/face-detection.png) |
+
+| Age Estimation | Grad-CAM |
+|---|---|
+| ![Age Prediction](./assets/age-prediction.png) | ![Grad-CAM](./assets/gradcam.png) |
 
 </div>
 
-Add your actual project screenshots in the `assets` directory and display them here.
+*Replace the example image paths with screenshots from your actual application.*
 
-```markdown
-![VerifiAge Dashboard](./assets/dashboard.png)
+## ◈ 10 — Future Roadmap
 
-![Face Detection](./assets/face-detection.png)
+- [ ] Explore stronger vision architectures.
+- [ ] Improve age prediction across diverse age groups.
+- [ ] Expand robustness and bias evaluation.
+- [ ] Optimize inference speed.
+- [ ] Improve prediction calibration and uncertainty estimation.
+- [ ] Enhance real-time visualization and explainability.
 
-![Age Prediction](./assets/age-prediction.png)
+## ◈ 11 — Important Disclaimer
 
-![Grad-CAM Visualization](./assets/gradcam.png)
-```
+VerifiAge is an experimental AI research and development project.
 
----
+Its predictions are approximate estimates, not verified ages or identity information. Results may be influenced by lighting, image quality, facial appearance and dataset limitations.
 
-## Future Improvements
-
-- Explore stronger vision backbones and vision foundation models.
-- Improve prediction accuracy across different age groups.
-- Expand demographic and image-quality robustness evaluation.
-- Optimize inference latency for real-time applications.
-- Improve model calibration and uncertainty estimation.
-- Extend explainability and model evaluation capabilities.
+It should not be used as the sole basis for legal age verification, identity verification or other high-stakes decisions. Obtain appropriate consent before processing facial images.
 
 ---
-
-## Important Disclaimer
-
-VerifiAge is an experimental AI-based age-estimation project.
-
-Its output is an approximate prediction, not a verified identity or legally valid age confirmation. Predictions may vary due to lighting, facial appearance, image quality, dataset bias and other factors.
-
-It should not be used as the sole basis for identity verification, legal age verification, access control or other high-stakes decisions.
-
-Facial images are sensitive personal data. Use only images for which appropriate consent and authorization have been obtained.
-
----
-
-## Project Information
 
 <div align="center">
 
-**VERIFIAGE — AI-POWERED AGE ESTIMATION**
-
-Built using Computer Vision, Deep Learning and Explainable AI.
+<img src="https://readme-typing-svg.demolab.com?font=Orbitron&weight=600&size=21&pause=900&color=22D3EE&center=true&vCenter=true&width=650&lines=THE+FUTURE+OF+FACIAL+AI.;DETECT.+ANALYZE.+ESTIMATE.;WELCOME+TO+VERIFIAGE." alt="Animated closing message" />
 
 <br/>
 
-*Detect. Analyze. Estimate.*
+**Built with Computer Vision · Deep Learning · Explainable AI**
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:06B6D4,50:0F3B55,100:020617&height=120&section=footer" width="100%" />
 
 </div>
